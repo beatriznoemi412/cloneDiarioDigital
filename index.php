@@ -1,3 +1,17 @@
+<?php
+/**
+ * Esta pagina PHP muestra el home de noticias cargadas dinamicamente.
+ * 
+ * Utiliza el arreglo $noticias compartido simulando registros que saldrian de una Base de Datos.
+ */
+
+require_once './db_fake.php';
+
+// fecha actual para el footer
+$fecha = new DateTime();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +23,19 @@
     <title>TUDAI - Diario Digital</title>
 </head>
 <body>
+
+    <!-- main header -->
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">TUDAI Digital</a>
+              <a class="navbar-brand" href="">TUDAI Digital</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.html">Noticias</a>
+                    <a class="nav-link" aria-current="page" href="index.php">Noticias</a>
                   </li>
                 </ul>
               </div>
@@ -27,20 +43,32 @@
           </nav>
     </header>
 
+    <!-- main section -->
     <main class="container mt-5">
-      <section class="noticia">
-        <h1 class="mb-5">Starbucks se va del país y hay preocupación entre hipsters: -'no sabemos donde iremos a mostrar que tenemos una macbook.'-.</h1>
-        <img class="noticia-image" src="https://1.bp.blogspot.com/-HiD_vBlSbg0/X2PjR8udR5I/AAAAAAAAIvw/E3EWAortz7A3ZHIdTrOGHa7YGsf17ZUiQCLcBGAsYHQ/w640-h444/starbucks.jpg" alt="...">
-        <p class="lead mt-3">Según el comunicado oficial 'debido a la crisis global que vive el sector, y la cantidad de pelotudos que ocupan mesas durante 8 horas con un café y dos mediaslunas solamente para darse corte que tienen una MacBook, se hace inviables la continidad de las operaciones en Argentina.'</p>
+      <section class="noticias">
+
+        <!-- noticias -->
+        <?php foreach($noticias as $index => $noticia) : ?>
+        <div class="card">
+          <img src="<?php echo $noticia->imagen ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo "$noticia->titulo" ?></h5>
+            <p class="card-text"><?php echo $noticia->contenido ?></p>
+            <a href="noticia.php?id=<?php echo $index ?>" class="btn btn-outline-primary">Leer más</a>
+          </div>
+        </div>
+        <?php endforeach ?>
+
       </section>
     </main>
-
+    
+    <!-- main footer -->
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
       <div class="align-items-center">
-        <span class="text-muted">2023 TUDAI, UNICEN</span>
+      <span class="text-muted"><?php echo $fecha->format('Y')?> TUDAI, UNICEN</span>
       </div>
     </footer>
-    
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>

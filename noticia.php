@@ -1,3 +1,22 @@
+<?php
+/**
+ * Esta pagina PHP muestra una noticia enviada por parametro GET desde la URL.
+ * 
+ * Utiliza el arreglo $noticias compartido simulando registros que saldrian de una Base de Datos.
+ */
+
+require_once './db_fake.php';
+
+// utiliza el arreglo $_GET para tomar el parametro que viene desde la url (noticias.php?id=<int>)
+// faltarìa agregar una verificación para controlar si existe la noticia
+
+$idNoticia = $_GET['id'];
+$noticia = $noticias[$idNoticia];
+
+// fecha actual para el footer
+$fecha = new DateTime();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,14 +31,14 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">TUDAI Digital</a>
+              <a class="navbar-brand" href="">TUDAI Digital</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="index.html">Noticias</a>
+                    <a class="nav-link" aria-current="page" href="index.php">Noticias</a>
                   </li>
                 </ul>
               </div>
@@ -29,15 +48,15 @@
 
     <main class="container mt-5">
       <section class="noticia">
-        <h1 class="mb-5">Crean software para detectar gente pelotudeando en el trabajo.</h1>
-        <img class="noticia-image" src="https://1.bp.blogspot.com/-f1w3f4ePS3s/W1jVAAlT6RI/AAAAAAAAGuE/jAD5isAy2Ws5MNlrbViteOkzs3TTAr5nACLcBGAs/s640/SW_DRONE.jpg" alt="...">
-        <p class="lead mt-3">El Software, promete disparar la productividad de empresas y comercios, al eliminar tiempos muertos de empleados asignandoles diferentes roles. Varios sindicatos ya se declararon en contra del uso de esta tecnología.</p>
+        <h1 class="mb-5"><?php echo $noticia->titulo ?></h1>
+        <img class="noticia-image" src="<?php echo $noticia->imagen ?>" alt="...">
+        <p class="lead mt-3"><?php echo $noticia->contenido ?></p>
       </section>
     </main>
 
     <footer class="d-flex flex-wrap justify-content-center align-items-center py-3 my-4 border-top">
       <div class="align-items-center">
-        <span class="text-muted">2023 TUDAI, UNICEN</span>
+        <span class="text-muted"><?php echo $fecha->format('Y')?> TUDAI, UNICEN</span>
       </div>
     </footer>
     
