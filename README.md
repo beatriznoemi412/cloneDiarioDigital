@@ -1,2 +1,6 @@
 # Diario Digital - Web 2 UNICEN
-En este ejemplo llevaremos un simple portal de noticias estático, hecho con HTML/CSS/JS, al siguiente nivel utilizando renderización del lado del servidor.
+Diario Digital realizado utilzando Serve Side Programming con PHP.
+
+En este ejemplo convertimos un simple portal de noticias estático (HTML/CSS) a un portal dinámico leyendo noticias de una base de datos compartida.
+
+**Historial de commits para el "paso a paso"** : https://gitlab.com/unicen/Web2/livecoding2024/tandil/diario-digital/-/commits/main
