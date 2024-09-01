@@ -1,5 +1,6 @@
 <?php
 require_once "noticias.php";
+require_once 'about.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -11,12 +12,15 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 //    about         showAbout()
 //    about/:dev    showAbout($dev)
 
+// leo el parametro accion
+$action = 'home'; // accion por defecto
+
 if (!empty($_GET["action"])){
     $action = $_GET["action"];
 } else {
     $action = "home";
 }
-// noticia/3 = ["noticia","3"];
+// noticia/3 = ["noticia","3"];parsea la accion Ej about/juan
 $params = explode("/",$action);
 
 switch ($params[0]) {
@@ -31,7 +35,12 @@ switch ($params[0]) {
         }
         break;
     case "about":
-        echo "En construcción";
+        if(empty($params[1])){
+            showAbout();
+        }
+        else{
+            showAbout($params[1]);
+        }
         break;
     default:
         echo "Error 404";

@@ -40,3 +40,46 @@ function getNoticiaById($id){
     $noticia = $noticias[$id]; 
     return $noticia;
 }
+
+function getDevelopers(){
+    $dev1 = new stdClass(); 
+    $dev1 -> id ="lucas";
+    $dev1 -> nombre ="Lucas";
+    $dev1 -> apellido = "Martin";
+    $dev1 -> rol = "Fullstack php";
+    $dev1 -> email = "lucas.martin@diariotudai.com";
+    $dev1 -> imagen ="./images/man.jpg";
+
+    $dev2 = new stdClass(); 
+    $dev2 -> id ="roberto";
+    $dev2 -> nombre ="Roberto";
+    $dev2 -> apellido = "Martinez";
+    $dev2 -> rol = "Backend";
+    $dev2 -> email = "rober.martinez@diariotudai.com";
+    $dev2 -> imagen ="./images/man.jpg";
+    
+    $dev3 = new stdClass();
+    $dev3 -> id ="Ignacio";
+    $dev3 -> nombre ="Ignacio";
+    $dev3 -> apellido = "Perez";
+    $dev3 -> rol = "Diseñador Gráfico";
+    $dev3 -> email = "ignacio.perez@diariotudai.com";
+    $dev3 -> imagen ="./images/man.jpg";
+
+    $developers= [$dev1, $dev2, $dev3];
+    return $developers;
+    }
+
+/**
+ * Devuelve un developer dado su ID
+ */
+function getDevelopedById($id) {
+    $developers = getDevelopers();
+
+    foreach ($developers as $developer) {
+        if ($id == $developer->id) return $developer;
+    }
+
+    return null;
+}
+
